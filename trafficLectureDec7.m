@@ -22,6 +22,7 @@ if (t > tlc) % all lights are synchronous in the sense that all lights change at
     
     tlc = tlc + tlcstep; % tlcstep is how often the lights take to change
     s = zeros(1, nb);
+    
     for i = 1:ni
         b = bin(i, jgreen(i)); % tells us what's the block for a given intersection
         s(b) = 1; % every block has 2 names: the number it is coming into an intersection, and a global name b
@@ -39,6 +40,33 @@ for b = 1:ni
         x(nc) = xi(i1(b)) + p(nc)*ux(b); % now give it coordinates for plotting purposes
         % ux is the bth component of a unit vector
         y(nc) = yi(i1(b)) + p(nc)*uy(b);
+        
+        onroad(nc) = 1; % indicator function; on road = 1, off road = 0
+        insertnewcar % new script to place car
+        choosedestination % another script
+        
+        nextb(nc) = b; % (?)
+        
+        tenter(nc) = t; % t = clock*dt 
+        
+        benter(nc) = b;
+        penter(nc) = p(nc);
+        
+    end
+end
+
+% insertnewcar.m
+% "this is where we get to the harder things, where the program gets interesting is what I'm trying to say"
+c = firstcar(b);
+if (c == 0) || p(nc) > p(c)) % only possible with arrays; 'or' condition syntax avoids a bug (ends issue if the first condition is true
+    nextcar(nc) = c; % if the position of the new car is greater than the position of the first car then the new car becomes the first car
+    firstcar(b) = nc;
+    
+    if (c == 0) %if the block is empty it is also the last car
+        lastcar(b) = nc;
+    end
+    
+end
         
         
 
