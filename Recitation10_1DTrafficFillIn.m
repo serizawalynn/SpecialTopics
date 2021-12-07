@@ -1,24 +1,23 @@
-queue=road;
-queue.StartingPosition=;
-queue.EndingPosition=;
-queue.Direction=;
-
-FirstStreet=road;
-FirstStreet.StartingPosition=;
-FirstStreet.End
-
-SecondStreet=road;
-
-ThirdStreet=road;
-
-FourthStreet=road;
+% queue=road;
+% queue.StartingPosition=;
+% queue.EndingPosition=;
+% queue.Direction=;
+% 
+% FirstStreet=road;
+% FirstStreet.StartingPosition=;
+% FirstStreet.End
+% 
+% SecondStreet=road;
+% 
+% ThirdStreet=road;
+% 
+% FourthStreet=road;
         
-
-L = 1; % length of road
+L = 595; % length of road
 % Set # of cars
 N = 100;
 
-xc = rand(N, 1); % sets up cars in random locations around the road
+xc = -10*rand(N, 1); % sets up cars in random locations around the road
 xc = sort(xc);
 
 CarInFront = [2 : N 1]; % 
@@ -64,7 +63,27 @@ for iT=1:stopcount
     % new position = old position + time*(distance/time) (in array-style)
     xc = xc + dt*vels;
     
-    % Plot them in circle
+    % Plot them in the route
+    A1 = [0,0];
+    B1 = [0, -200];
+
+    A2 = [80, 80];
+    B2 = [-200, -490];
+
+    A3 = [0, 80];
+    B3 = [-200, -200];
+
+    A4 = [55, 80];
+    B4 = [-490, -490];
+
+    plot(A1,B1)
+    hold on
+    plot(A2,B2)
+    plot(A3, B3)
+    plot(A4, B4)
+    ylim([-600, 200])
+    axis equal
+    
     theta = mod(xc,L)/L*2*pi;
     plot(2*cos(theta),2*sin(theta),'o')
     hold on
