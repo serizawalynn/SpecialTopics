@@ -55,9 +55,26 @@ for b = 1:ni
     end
 end
 
-% link-list structure
-
-% "this is where 
+% insertnewcar.m
+% "this is where we get to the harder things, where the program gets interesting is what I'm trying to say"
+c = firstcar(b);
+if (c == 0) || p(nc) > p(c)) % only possible with arrays; 'or' condition syntax avoids a bug (ends issue if the first condition is true
+    nextcar(nc) = c; % if the position of the new car is greater than the position of the first car then the new car becomes the first car
+    firstcar(b) = nc;
+    
+    if (c == 0) %if the block is empty it is also the last car
+        lastcar(b) = nc;
+    end
+    
+elseif p(nc) >= p(lastcar(b))
+    nextcar(lastcar(b)) = nc;
+    lastcar(b) = nc;
+    
+else
+    ca = c;
+    c = nextcar(c);
+    
+    while p
 
         
         

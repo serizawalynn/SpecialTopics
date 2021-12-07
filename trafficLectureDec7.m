@@ -66,7 +66,32 @@ if (c == 0) || p(nc) > p(c)) % only possible with arrays; 'or' condition syntax 
         lastcar(b) = nc;
     end
     
+elseif p(nc) >= p(lastcar(b))
+    nextcar(lastcar(b)) = nc;
+    lastcar(b) = nc;
+    
+else
+    ca = c;
+    c = nextcar(c);
+    
+    while (p(nc) <= p(c))
+        ca = c
+        c = nextcar(c);
+    end
+    
+    nextcar(ca) = nc;
+    nextcar(nc) = c; % the car behind
+    
 end
+
+% movecars.m
+
+
+        
+        
+        
+        
+
         
         
 
