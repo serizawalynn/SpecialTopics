@@ -75,7 +75,7 @@ else
     c = nextcar(c);
     
     while (p(nc) <= p(c))
-        ca = c
+        ca = c;
         c = nextcar(c);
     end
     
@@ -86,6 +86,57 @@ end
 
 % movecars.m
 
+for b = 1:nb
+    c = firstcar(b);
+    while  (c > 0)
+        if (c == firstcar(b))
+            
+            if (bd(c) == b) && (pd(c) > p(c)) % if your destination is not ahead of you, or on the same block
+                d = dmax;
+            elseif (s(b) == 0)
+                d = L(b) - p(c); 
+            else % then, we need to decide the next block
+                decidenextblock % another script 
+                
+                if (lastcar(nextb(c)) > 0)
+                    d = L(b) - p(c) + p(lastcar(nextb(c)));
+                else 
+                    d = dmax;
+                    
+                end
+            end
+            
+        else % what if we are not talking about the first car?
+             % then d is simply the position of the car ahead minus the position of the car
+            d = p(ca) - p(c);
+        end
+        pz = p(c); % old position
+        nextc = nextcar(c); 
+        p(c) = p(c) + dt* v(d);
+        
+        % if the block we're on is the destination block and the old position
+        % is less than the 
+        if (b == bd(c) && (pz < pd(c)) && (pd(c) <= p(c)))
+            removecar
+            
+                
+        elseif (L(b) <= p(c))
+            p(c) = p(c) - L(b);
+            if (nextb(c) == bd(c) && pd(c) <= p(c))
+                removecar
+            else 
+                cartonextblock
+            end
+            
+        else
+            x(c) = xi(i1(b)) + p(c)*ux(b);
+            y(c) = yi(i1(b)) + p(c)*uy(b);
+            
+            ca = c;
+        end
+        c = nextc;
+    end
+end
 
         
         
