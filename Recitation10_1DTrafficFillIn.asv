@@ -1,20 +1,19 @@
-queue=road;
-queue.StartingPosition=;
-queue.EndingPosition=;
-queue.Direction=;
-
-FirstStreet=road;
-FirstStreet.StartingPosition=;
-FirstStreet.End
-
-SecondStreet=road;
-
-ThirdStreet=road;
-
-FourthStreet=road;
+% queue=road;
+% queue.StartingPosition=;
+% queue.EndingPosition=;
+% queue.Direction=;
+% 
+% FirstStreet=road;
+% FirstStreet.StartingPosition=;
+% FirstStreet.End
+% 
+% SecondStreet=road;
+% 
+% ThirdStreet=road;
+% 
+% FourthStreet=road;
         
-
-L = 1; % length of road
+L = 595; % length of road, hard-coded
 % Set # of cars
 N = 100;
 

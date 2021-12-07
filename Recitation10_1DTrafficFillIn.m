@@ -1,19 +1,4 @@
-% queue=road;
-% queue.StartingPosition=;
-% queue.EndingPosition=;
-% queue.Direction=;
-% 
-% FirstStreet=road;
-% FirstStreet.StartingPosition=;
-% FirstStreet.End
-% 
-% SecondStreet=road;
-% 
-% ThirdStreet=road;
-% 
-% FourthStreet=road;
-        
-L = 595; % length of road
+L = 595; % length of road, hard-coded
 % Set # of cars
 N = 100;
 
@@ -33,8 +18,8 @@ stopcount = Tf/dt;
 vels = zeros(N,1); % velocities of the cars
 
 % Define dmin, dmax, vmax for case 2: dmax > L/N > dmin
-dmin = 0.9*(L/N); % hard-code this 
-dmax = 1.1*(L/N); % hard-code this also
+dmin = 0.9*(10/N); % hard-code this 
+dmax = 1.1*(10/N); % hard-code this also
 vmax = 0.1; % hard-code this also
 
 % Test plot of v
