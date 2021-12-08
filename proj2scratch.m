@@ -11,8 +11,8 @@ allds = [];
 allvs = [];
 
 d = zeros(N , 1); % distance at each timestep
-dt = 1e-2;
-Tf = 50;
+dt = 5;
+Tf = 10800;
 stopcount = Tf/dt;
 
 %Intersections
@@ -22,7 +22,7 @@ vels = zeros(N,1); % velocities of the cars
 
 % Define dmin, dmax, vmax for case 2: dmax > L/N > dmin
 dmin = 0.9*(10/N); % hard-code this 
-dmax = 1.1*(10/N); % hard-code this also
+dmax = 5*(10/N); % hard-code this also
 vmax = 0.1; % hard-code this also
 
 % Test plot of v
@@ -40,9 +40,9 @@ for iT=1:stopcount
         d(iCar) = xc(CarInFront(iCar)) - xc(iCar);
         
          % handle the case for the final car
-        if (d(iCar) < 0)
-            d(iCar) = d(iCar) + L;
-        end
+%         if (d(iCar) < 0)
+%             d(iCar) = d(iCar) + L;
+%         end
         
         % Update the car velocities
         for i=1:length(Intsct)
@@ -77,16 +77,15 @@ for iT=1:stopcount
     plot(A3, B3)
     plot(A4, B4)
     ylim([-600, 200])
-    axis equal
+    axis([-10 10 -10 10])
     
     %Plot vehicles
     
-    plot(xc,0,'o')
+    plot(xc,0,'.',MarkerSize=50)
     hold on
     
     %Visuals
-    tpl = linspace(0,2*pi,1000);
-    plot(cos(tpl),sin(tpl))
+  
     drawnow
     hold off
     % Keep track of distance between car and that in front
