@@ -5,7 +5,7 @@ N = 100;
 xc = -10*rand(N, 1); % sets up cars in random locations around the road
 xc = sort(xc);
 
-CarInFront = [2 : N 1]; % 
+CarInFront = [2:N 1]; % 
 
 allds = [];
 allvs = [];

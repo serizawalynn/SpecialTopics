@@ -12,7 +12,7 @@ allvs = [];
 
 d = zeros(N , 1); % distance at each timestep
 dt = 0.5;
-Tf = 5000; %Parade took about three hours (10800 sec)
+Tf = 2200; %Parade took about three hours 
 stopcount = Tf/dt;
 
 %Intersections
@@ -46,7 +46,6 @@ vidya.FrameRate=framerate;
 open(vidya)
 
 for iT=1:stopcount
-    iT
     % Calculate velocity of each car (fill in the array vels)
     for iCar=1:N
         % Update the car positions
