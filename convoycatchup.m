@@ -14,7 +14,7 @@ allvs = [];
 
 d = zeros(N , 1); % distance at each timestep
 dt = 0.5;
-Tf = 3500; %Parade took about three hours (10800 sec)
+Tf = 1000; %Parade took about three hours (10800 sec)
 stopcount = Tf/dt;
 
 %Intersections
@@ -50,7 +50,7 @@ vidya=VideoWriter("convoy.mp4");
 framerate_we_want=60;
 duration_we_want=10;
 framerate=framerate_we_want*duration_we_want;
-vidya.FrameRate=framerate;
+vidya.FrameRate=200;
 open(vidya)
 
 cars_passed_counter=0;
