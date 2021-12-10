@@ -12,7 +12,7 @@ allvs = [];
 
 d = zeros(N , 1); % distance at each timestep
 dt = 0.5;
-Tf = 5000; %Parade took about three hours (10800 sec)
+Tf = 3500; %Parade took about three hours (10800 sec)
 stopcount = Tf/dt;
 
 %Intersections
@@ -36,6 +36,7 @@ end
 
 %%Code for movie/visuals
 my_figure=figure(1);
+my_figure.WindowState='maximized';
 vidya=VideoWriter("awesome.mp4");
 
 %video fps
@@ -82,7 +83,7 @@ for iT=1:stopcount
     
     %Plot vehicles
     
-    plot(xc,0,'.',MarkerSize=25)
+    plot(xc,0,'.',MarkerSize=20)
     
     
     %Visuals
