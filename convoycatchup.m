@@ -13,7 +13,7 @@ allds = [];
 allvs = [];
 
 d = zeros(N , 1); % distance at each timestep
-dt = 0.5;
+dt = 0.01;
 Tf = 1000; %Parade took about three hours (10800 sec)
 stopcount = Tf/dt;
 
@@ -29,8 +29,8 @@ vels = zeros(N,1); % velocities of the cars
 % Define dmin, dmax, vmax for case 2: dmax > L/N > dmin
 dmin = 20; % hard-code this 
 dmax = 30; % hard-code this also
-vmax = 3; % hard-code this also
-vmax_lead=2;
+vmax = 7; % hard-code this also
+vmax_lead=5;
 
 % Test plot of v
 dtest = linspace(0,2*dmax,100);
@@ -44,7 +44,7 @@ end
 %%Code for movie/visuals
 my_figure=figure(1);
 my_figure.WindowState='maximized';
-vidya=VideoWriter("convoy.mp4");
+vidya=VideoWriter("new_convoy_catchup.mp4");
 
 %video fps
 framerate_we_want=60;
@@ -86,12 +86,15 @@ for iT=1:stopcount
             if abs(Intsct(i)-xc(iCar))<5
             %if (xc(iCar)>(Intsct(i)-5)) & (xc(iCar)<(Intsct(i)+5))
                 vels(iCar)=min(vels(iCar),1);
+                
                 break %we're breaking because we only need to find the one intersection the car is at
             else
                 if iCar==length(xc)
                     vels(iCar)= v(d(iCar), dmin, dmax, vmax_lead);
+                    vels(5)=3.5;
                 else
                     vels(iCar) = v(d(iCar), dmin, dmax, vmax);
+                    vels(5)=3.5;
                 end
             end
         end

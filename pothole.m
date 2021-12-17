@@ -13,15 +13,17 @@ allds = [];
 allvs = [];
 
 d = zeros(N , 1); % distance at each timestep
-dt = .5;
+dt = .01;
 Tf = 1000; %Parade took about three hours (10800 sec)
 stopcount = Tf/dt;
 
 %Intersections
 Intsct=[275 1725 2275 4275 4550]; 
+radius=5;
 
 %Potholes
 pthole_pos=[1967];
+pt_radius=100;
 %pthole_time=[]
 
 vels = zeros(N,1); % velocities of the cars
@@ -43,16 +45,21 @@ end
 %%Code for movie/visuals
 my_figure=figure(1);
 my_figure.WindowState='maximized';
-vidya=VideoWriter("pothole.mp4");
+vidya=VideoWriter("new_pothole.mp4");
 
 %video fps
 framerate_we_want=60;
 duration_we_want=10;
-framerate=framerate_we_want*duration_we_want;
-vidya.FrameRate=200;
+% framerate=stopcount*
+% framerate_we_want*duration_we_want;
+vidya.FrameRate=stopcount/duration_we_want;
 open(vidya)
 
 cars_passed_counter=0;
+Intsct=[Intsct pthole_pos(1)];
+
+
+
 for iT=1:stopcount
     pthole_counter=length(pthole_pos);
     iT
@@ -64,11 +71,12 @@ for iT=1:stopcount
         end
     end
 
-    if cars_passed>=N/2 & cars_passed_counter<=length(pthole_pos)
-        Intsct=[Intsct pthole_pos(1)];
-        cars_passed_counter=cars_passed_counter+1;
+    %if cars_passed>=N/2 & cars_passed_counter<=length(pthole_pos)
+        %Intsct=[Intsct pthole_pos(1)];
+        %cars_passed_counter=cars_passed_counter+1;
     
-    end
+    %end
+    
 
     % Calculate velocity of each car (fill in the array vels)
     for iCar=1:N
@@ -82,7 +90,7 @@ for iT=1:stopcount
         
         % Update the car velocities
         for i=1:length(Intsct)
-            if abs(Intsct(i)-xc(iCar))<5
+            if abs(Intsct(i)-xc(iCar))<radius
             %if (xc(iCar)>(Intsct(i)-5)) & (xc(iCar)<(Intsct(i)+5))
                 vels(iCar)=min(vels(iCar),.5);
                 break %we're breaking because we only need to find the one intersection the car is at
@@ -90,6 +98,7 @@ for iT=1:stopcount
                 vels(iCar) = v(d(iCar), dmin, dmax, vmax);
             end
         end
+       
         
     end 
     
@@ -110,6 +119,7 @@ for iT=1:stopcount
     
     %Visuals
     axis([-10 4550 -10 10])
+    
     drawnow
     hold off
     % Keep track of distance between car and that in front

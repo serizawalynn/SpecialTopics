@@ -13,7 +13,7 @@ allds = [];
 allvs = [];
 
 d = zeros(N , 1); % distance at each timestep
-dt = 0.5;
+dt = 0.01;
 Tf = 1000; %Parade took about three hours (10800 sec)
 stopcount = Tf/dt;
 
@@ -44,7 +44,7 @@ end
 %%Code for movie/visuals
 my_figure=figure(1);
 my_figure.WindowState='maximized';
-vidya=VideoWriter("convoy.mp4");
+vidya=VideoWriter("new_convoy_drunk.mp4");
 
 %video fps
 framerate_we_want=60;
